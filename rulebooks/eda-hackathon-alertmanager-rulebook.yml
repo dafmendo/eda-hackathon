@@ -8,11 +8,11 @@
         port: 5000
   rules:
     - name: server down
-      condition: event.alert.labels.job == "server" and event.alert.status == "firing"
+      condition: event.payload.status == "firing"
       action:
         run_job_template:
           organization: Default
-          name: "{{ job_template_name }}"
+          name: "hk-shared-jt"
           job_args:
             extra_vars:
-              job_template_name: "{{ job_template_name }}"
+              job_template_name: "hk-shared-jt"
